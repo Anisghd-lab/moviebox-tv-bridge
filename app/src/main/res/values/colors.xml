@@ -1,0 +1,11 @@
+<resources>
+    <!-- CodeStation Dark Obsidian Palette -->
+    <color name="bg_midnight_obsidian">#0B0D12</color>
+    <color name="bg_card_glass">#D9171B24</color>
+    <color name="border_glass">#33FFFFFF</color>
+    <color name="accent_blue_electric">#438DFF</color>
+    <color name="accent_cyan_neon">#00D2FF</color>
+    <color name="accent_emerald">#10B981</color>
+    <color name="text_primary">#F9FAFB</color>
+    <color name="text_secondary">#9CA3AF</color>
+</resources>

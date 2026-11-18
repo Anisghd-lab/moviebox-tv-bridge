@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MovieBox TV Bridge</string>
+    <string name="channel_display_name">MovieBox - Films &amp; Tendances</string>
+    <string name="channel_description">Films populaires et nouveautés MovieBox sur Android TV</string>
+</resources>

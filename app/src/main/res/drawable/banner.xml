@@ -1,0 +1,25 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+    <!-- Dark Obsidian Background -->
+    <path
+        android:fillColor="#0B0D12"
+        android:pathData="M0,0h320v180h-320z" />
+    <!-- Gradient Card Glass Overlay -->
+    <path
+        android:fillColor="#171B24"
+        android:pathData="M16,16h288v148h-288z" />
+    <!-- Cyan Neon Accent Line -->
+    <path
+        android:fillColor="#00D2FF"
+        android:pathData="M16,16h288v4h-288z" />
+    <!-- Movie Play Icon -->
+    <path
+        android:fillColor="#438DFF"
+        android:pathData="M60,65 L100,90 L60,115 Z" />
+    <path
+        android:fillColor="#00D2FF"
+        android:pathData="M75,75 L100,90 L75,105 Z" />
+</vector>

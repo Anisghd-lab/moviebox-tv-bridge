@@ -1,0 +1,74 @@
+{
+  "app/build.gradle.kts": {
+    "mtime": 1795038174.2010825,
+    "seen": 1795038379.0494072,
+    "ast_hash": "2a85018a1be7f9ff641b87e427c4818e",
+    "semantic_hash": "2a85018a1be7f9ff641b87e427c4818e"
+  },
+  "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/MainActivity.kt": {
+    "mtime": 1795038355.479492,
+    "seen": 1795038379.0494165,
+    "ast_hash": "d39e9322bea0a664dfd63691913a21e9",
+    "semantic_hash": "d39e9322bea0a664dfd63691913a21e9"
+  },
+  "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/TrampolineActivity.kt": {
+    "mtime": 1795038326.495492,
+    "seen": 1795038379.0494208,
+    "ast_hash": "1652dcd288429f6eedb932be9911f53a",
+    "semantic_hash": "1652dcd288429f6eedb932be9911f53a"
+  },
+  "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/data/Movie.kt": {
+    "mtime": 1795038232.8930824,
+    "seen": 1795038379.0494242,
+    "ast_hash": "8243f1dd29c4a1efd7b642aff6fb7695",
+    "semantic_hash": "8243f1dd29c4a1efd7b642aff6fb7695"
+  },
+  "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/data/MovieRepository.kt": {
+    "mtime": 1795038277.803492,
+    "seen": 1795038379.0494263,
+    "ast_hash": "2dd49403106c46d62401d33ae696000b",
+    "semantic_hash": "2dd49403106c46d62401d33ae696000b"
+  },
+  "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/receiver/TvBootReceiver.kt": {
+    "mtime": 1795038307.639492,
+    "seen": 1795038379.0494287,
+    "ast_hash": "16e34da5ab8fd917cad3a72d9d2b386e",
+    "semantic_hash": "16e34da5ab8fd917cad3a72d9d2b386e"
+  },
+  "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/service/MovieBoxChannelManager.kt": {
+    "mtime": 1795038299.0754921,
+    "seen": 1795038379.049431,
+    "ast_hash": "7eadcdfbeb1196a6bc236f955c006932",
+    "semantic_hash": "7eadcdfbeb1196a6bc236f955c006932"
+  },
+  "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/service/TvChannelSyncWorker.kt": {
+    "mtime": 1795038317.239492,
+    "seen": 1795038379.049433,
+    "ast_hash": "b9bf75056fcb9521a4f9f26e5b2edce0",
+    "semantic_hash": "b9bf75056fcb9521a4f9f26e5b2edce0"
+  },
+  "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/ui/HomeScreen.kt": {
+    "mtime": 1795038349.451492,
+    "seen": 1795038379.0494351,
+    "ast_hash": "bd9609498b2eda32720e70cf0bbd3327",
+    "semantic_hash": "bd9609498b2eda32720e70cf0bbd3327"
+  },
+  "build.gradle.kts": {
+    "mtime": 1795038152.2890825,
+    "seen": 1795038379.0494375,
+    "ast_hash": "2d26f5eadaa05f755bab54e1071b4c23",
+    "semantic_hash": "2d26f5eadaa05f755bab54e1071b4c23"
+  },
+  "gradlew": {
+    "mtime": 1795038127.4410825,
+    "seen": 1795038379.0494394,
+    "ast_hash": "a43be8432bac3ffd05b3769aa42fe996",
+    "semantic_hash": "a43be8432bac3ffd05b3769aa42fe996"
+  },
+  "settings.gradle.kts": {
+    "mtime": 1795038146.2370825,
+    "seen": 1795038379.049442,
+    "ast_hash": "2877457d2aa8cc7970b09396464e0c29",
+    "semantic_hash": "2877457d2aa8cc7970b09396464e0c29"
+  }
+}

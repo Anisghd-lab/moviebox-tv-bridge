@@ -1,0 +1,207 @@
+{
+  "communities": {
+    "0": [
+      "alignment",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_ui_homescreen",
+      "asyncimage",
+      "background",
+      "border",
+      "brush",
+      "clip",
+      "contentscale",
+      "context",
+      "dp",
+      "focusable",
+      "fontfamily",
+      "fontweight",
+      "items",
+      "lazyrow",
+      "localcontext",
+      "modifier",
+      "roundedcornershape",
+      "sp"
+    ],
+    "1": [
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager_kt_context",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager_movieboxchannelmanager",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager_movieboxchannelmanager_createchannellogo",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager_movieboxchannelmanager_getstoredchannelid",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager_movieboxchannelmanager_setstoredchannelid",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager_movieboxchannelmanager_syncchannel",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager_syncresult",
+      "bitmap",
+      "canvas",
+      "channellogoutils",
+      "color",
+      "paint",
+      "previewchannel",
+      "previewchannelhelper",
+      "previewprogram",
+      "tvcontractcompat"
+    ],
+    "2": [
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_tvchannelsyncworker",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_tvchannelsyncworker_kt_context",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_tvchannelsyncworker_tvchannelsyncworker",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_tvchannelsyncworker_tvchannelsyncworker_dowork",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_tvchannelsyncworker_tvchannelsyncworker_runonce",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_tvchannelsyncworker_tvchannelsyncworker_schedule",
+      "constraints",
+      "coroutineworker",
+      "existingperiodicworkpolicy",
+      "networktype",
+      "onetimeworkrequestbuilder",
+      "periodicworkrequestbuilder",
+      "result",
+      "workerparameters",
+      "workmanager"
+    ],
+    "3": [
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_mainactivity",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_mainactivity_kt_bundle",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_mainactivity_mainactivity",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_mainactivity_mainactivity_oncreate",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_ui_homescreen_homescreen",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_ui_homescreen_moviepreviewcard",
+      "componentactivity",
+      "composable",
+      "setcontent"
+    ],
+    "4": [
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_receiver_tvbootreceiver",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_receiver_tvbootreceiver_kt_context",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_receiver_tvbootreceiver_tvbootreceiver",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_receiver_tvbootreceiver_tvbootreceiver_onreceive",
+      "broadcastreceiver",
+      "coroutinescope",
+      "intent",
+      "launch",
+      "log"
+    ],
+    "5": [
+      "activity",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_trampolineactivity",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_trampolineactivity_kt_bundle",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_trampolineactivity_trampolineactivity",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_trampolineactivity_trampolineactivity_oncreate",
+      "toast",
+      "uri"
+    ],
+    "6": [
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_data_movierepository",
+      "dispatchers",
+      "jsonobject",
+      "okhttpclient",
+      "request",
+      "timeunit",
+      "withcontext"
+    ],
+    "7": [
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_data_movie",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_data_movie_movie",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_data_movierepository_movierepository",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_data_movierepository_movierepository_getliveorcuratedmovies",
+      "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_data_movierepository_movierepository_getmovies",
+      "serializable"
+    ],
+    "8": [
+      "gradlew",
+      "gradlew__entry",
+      "gradlew_die",
+      "gradlew_warn"
+    ],
+    "9": [
+      "app_build_gradle"
+    ],
+    "10": [
+      "build_gradle"
+    ],
+    "11": [
+      "settings_gradle"
+    ]
+  },
+  "cohesion": {
+    "0": 0.10526315789473684,
+    "1": 0.17647058823529413,
+    "2": 0.1619047619047619,
+    "3": 0.3333333333333333,
+    "4": 0.3055555555555556,
+    "5": 0.38095238095238093,
+    "6": 0.2857142857142857,
+    "7": 0.4666666666666667,
+    "8": 0.8333333333333334,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_ui_homescreen_homescreen",
+      "label": "HomeScreen()",
+      "degree": 8
+    },
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_data_movie_movie",
+      "label": "Movie",
+      "degree": 7
+    },
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager_movieboxchannelmanager",
+      "label": "MovieBoxChannelManager",
+      "degree": 7
+    },
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_tvchannelsyncworker_tvchannelsyncworker",
+      "label": "TvChannelSyncWorker",
+      "degree": 7
+    },
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_data_movierepository_movierepository",
+      "label": "MovieRepository",
+      "degree": 5
+    },
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_ui_homescreen_moviepreviewcard",
+      "label": "MoviePreviewCard()",
+      "degree": 4
+    },
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_mainactivity_mainactivity",
+      "label": "MainActivity",
+      "degree": 3
+    },
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_trampolineactivity_trampolineactivity",
+      "label": "TrampolineActivity",
+      "degree": 3
+    },
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_receiver_tvbootreceiver_tvbootreceiver",
+      "label": "TvBootReceiver",
+      "degree": 3
+    },
+    {
+      "id": "app_src_main_java_com_ghdinteractivestudio_movieboxbridge_service_movieboxchannelmanager_syncresult",
+      "label": "SyncResult",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "MoviePreviewCard()",
+      "target": "Movie",
+      "source_files": [
+        "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/ui/HomeScreen.kt",
+        "app/src/main/java/com/ghdinteractivestudio/movieboxbridge/data/Movie.kt"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

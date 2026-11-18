@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.MovieBoxTVBridge" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/bg_midnight_obsidian</item>
+        <item name="android:statusBarColor">@color/bg_midnight_obsidian</item>
+        <item name="android:navigationBarColor">@color/bg_midnight_obsidian</item>
+    </style>
+</resources>
