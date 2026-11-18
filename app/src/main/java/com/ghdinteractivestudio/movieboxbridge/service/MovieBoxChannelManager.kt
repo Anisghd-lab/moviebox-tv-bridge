@@ -1,18 +1,13 @@
 package com.ghdinteractivestudio.movieboxbridge.service
 
+import android.content.ContentUris
+import android.content.ContentValues
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.net.Uri
 import android.util.Log
-import androidx.tvprovider.media.tv.ChannelLogoUtils
-import androidx.tvprovider.media.tv.PreviewChannel
-import androidx.tvprovider.media.tv.PreviewChannelHelper
+import androidx.tvprovider.media.tv.Channel
 import androidx.tvprovider.media.tv.PreviewProgram
 import androidx.tvprovider.media.tv.TvContractCompat
-import com.ghdinteractivestudio.movieboxbridge.data.Movie
 import com.ghdinteractivestudio.movieboxbridge.data.MovieRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -45,76 +40,75 @@ object MovieBoxChannelManager {
 
     suspend fun syncChannel(context: Context, requestBrowsable: Boolean = true): SyncResult = withContext(Dispatchers.IO) {
         try {
-            val helper = PreviewChannelHelper(context)
             var channelId = getStoredChannelId(context)
-            var existingChannel: PreviewChannel? = null
 
-            // 1. Chercher si la chaîne existe déjà
+            // 1. Vérifier si la chaîne existe dans le ContentResolver
             if (channelId != -1L) {
-                try {
-                    existingChannel = helper.getPreviewChannel(channelId)
-                } catch (e: Exception) {
-                    Log.w(TAG, "Impossible de charger la chaîne existante ID=$channelId", e)
+                val checkUri = ContentUris.withAppendedId(TvContractCompat.Channels.CONTENT_URI, channelId)
+                val cursor = context.contentResolver.query(checkUri, arrayOf(TvContractCompat.Channels._ID), null, null, null)
+                val exists = cursor?.use { it.moveToFirst() } ?: false
+                if (!exists) {
+                    channelId = -1L
                 }
             }
 
-            if (existingChannel == null) {
-                try {
-                    val channels = helper.allChannels
-                    for (ch in channels) {
-                        if (ch.displayName == CHANNEL_NAME) {
-                            existingChannel = ch
-                            channelId = ch.id
-                            setStoredChannelId(context, channelId)
-                            break
-                        }
-                    }
-                } catch (e: Exception) {
-                    Log.w(TAG, "Erreur lecture des chaînes système", e)
-                }
-            }
-
-            // 2. Création de la chaîne si elle n'existe pas
-            if (existingChannel == null) {
-                Log.d(TAG, "Création d'une nouvelle chaîne pour MovieBox...")
+            // 2. Création directe de la chaîne via ContentResolver
+            if (channelId == -1L) {
+                Log.d(TAG, "Création directe du canal MovieBox dans TvContract...")
                 val appLinkUri = Uri.parse(
                     "#Intent;action=android.intent.action.MAIN;category=android.intent.category.LEANBACK_LAUNCHER;package=com.community.mbox.tv;component=com.community.mbox.tv/com.transsion.subroom.activity.SplashActivity;end"
                 )
 
-                val newChannel = PreviewChannel.Builder()
+                val channel = Channel.Builder()
+                    .setType(TvContractCompat.Channels.TYPE_PREVIEW)
                     .setDisplayName(CHANNEL_NAME)
                     .setDescription(CHANNEL_DESCRIPTION)
                     .setAppLinkIntentUri(appLinkUri)
                     .build()
 
-                channelId = helper.publishChannel(newChannel)
-                setStoredChannelId(context, channelId)
-                Log.i(TAG, "Chaîne MovieBox créée avec succès ! ID=$channelId")
+                val channelContentValues = channel.toContentValues()
+                val insertedUri = context.contentResolver.insert(TvContractCompat.Channels.CONTENT_URI, channelContentValues)
 
-                // Stocker le logo du canal
-                try {
-                    val logoBitmap = createChannelLogo()
-                    ChannelLogoUtils.storeChannelLogo(context, channelId, logoBitmap)
-                } catch (e: Exception) {
-                    Log.w(TAG, "Erreur stockage du logo de la chaîne", e)
-                }
-
-                if (requestBrowsable) {
-                    try {
-                        TvContractCompat.requestChannelBrowsable(context, channelId)
-                    } catch (e: Exception) {
-                        Log.w(TAG, "Erreur demande autorisation browsable", e)
-                    }
+                if (insertedUri != null) {
+                    channelId = ContentUris.parseId(insertedUri)
+                    setStoredChannelId(context, channelId)
+                    Log.i(TAG, "Chaîne MovieBox insérée avec succès ! ID=$channelId")
+                } else {
+                    return@withContext SyncResult(
+                        success = false,
+                        channelId = -1L,
+                        moviesCount = 0,
+                        message = "Erreur : Échec insertion de la chaîne dans TvContract"
+                    )
                 }
             } else {
                 Log.d(TAG, "Chaîne existante réutilisée ID=$channelId")
             }
 
-            // 3. Charger les films (dynamiques ou catalogue de base)
-            val movies = MovieRepository.getLiveOrCuratedMovies()
+            // Demande d'affichage au lanceur TV
+            if (requestBrowsable) {
+                try {
+                    TvContractCompat.requestChannelBrowsable(context, channelId)
+                } catch (e: Exception) {
+                    Log.w(TAG, "Notice demande browsable", e)
+                }
+            }
 
-            // 4. Mettre à jour les programmes de la chaîne
+            // 3. Nettoyer les anciens programmes de cette chaîne
+            try {
+                context.contentResolver.delete(
+                    TvContractCompat.PreviewPrograms.CONTENT_URI,
+                    "${TvContractCompat.PreviewPrograms.COLUMN_CHANNEL_ID} = ?",
+                    arrayOf(channelId.toString())
+                )
+            } catch (e: Exception) {
+                Log.w(TAG, "Notice nettoyage programmes", e)
+            }
+
+            // 4. Charger et insérer les programmes (films)
+            val movies = MovieRepository.getLiveOrCuratedMovies()
             var addedCount = 0
+
             for (movie in movies) {
                 try {
                     val watchUri = Uri.parse("movieboxbridge://watch?title=" + Uri.encode(movie.title))
@@ -131,22 +125,27 @@ object MovieBoxChannelManager {
                         .setIntentUri(watchUri)
                         .build()
 
-                    helper.publishPreviewProgram(program)
-                    addedCount++
+                    val pUri = context.contentResolver.insert(
+                        TvContractCompat.PreviewPrograms.CONTENT_URI,
+                        program.toContentValues()
+                    )
+                    if (pUri != null) {
+                        addedCount++
+                    }
                 } catch (e: Exception) {
-                    Log.w(TAG, "Erreur ajout du film ${movie.title}", e)
+                    Log.w(TAG, "Erreur ajout film ${movie.title}", e)
                 }
             }
 
-            Log.i(TAG, "Synchronisation terminée : $addedCount films ajoutés à la chaîne #$channelId")
+            Log.i(TAG, "Synchronisation terminée avec succès : $addedCount films ajoutés à la chaîne #$channelId")
             return@withContext SyncResult(
                 success = true,
                 channelId = channelId,
                 moviesCount = addedCount,
-                message = "$addedCount films synchronisés avec succès sur la chaîne #$channelId"
+                message = "Succès : $addedCount films ajoutés à la chaîne #$channelId !"
             )
         } catch (e: Exception) {
-            Log.e(TAG, "Échec global de la synchronisation de la chaîne MovieBox", e)
+            Log.e(TAG, "Échec global synchronisation", e)
             return@withContext SyncResult(
                 success = false,
                 channelId = -1L,
@@ -154,36 +153,5 @@ object MovieBoxChannelManager {
                 message = "Erreur : ${e.localizedMessage ?: e.message}"
             )
         }
-    }
-
-    private fun createChannelLogo(): Bitmap {
-        val bitmap = Bitmap.createBitmap(160, 160, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        val paint = Paint().apply {
-            isAntiAlias = true
-        }
-
-        // Fond rond sombre Obsidian
-        paint.color = Color.parseColor("#0B0D12")
-        canvas.drawCircle(80f, 80f, 78f, paint)
-
-        // Bordure Cyan
-        paint.color = Color.parseColor("#00D2FF")
-        paint.style = Paint.Style.STROKE
-        paint.strokeWidth = 4f
-        canvas.drawCircle(80f, 80f, 76f, paint)
-
-        // Icône Play MovieBox
-        paint.style = Paint.Style.FILL
-        paint.color = Color.parseColor("#438DFF")
-        val path = android.graphics.Path().apply {
-            moveTo(60f, 45f)
-            lineTo(115f, 80f)
-            lineTo(60f, 115f)
-            close()
-        }
-        canvas.drawPath(path, paint)
-
-        return bitmap
     }
 }
